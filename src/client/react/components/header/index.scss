@@ -1,0 +1,12 @@
+.app-header {
+    position: fixed;
+    top: 0;
+    height: $headerHeight;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: $black1;
+    display: flex;
+    justify-content: space-between;
+}
+  
