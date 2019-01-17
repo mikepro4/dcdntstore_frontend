@@ -38,13 +38,13 @@ body {
 }
 
 ::selection {
-  background: $mainFontColor;
-  color: $black;
+	background: $cobalt4;
+	color: $white;
 }
 
 ::-moz-selection {
-  background: $mainFontColor;
-  color: $black;
+	background: $cobalt4;
+	color: $white;
 }
 
 .screen {
@@ -62,7 +62,7 @@ body {
 	right: 0;
 	bottom: 0;
 	background: $backgroundColor;
-	color: $mainFontColor;
+	color: $black;
 	z-index: 1;
 
 	a {

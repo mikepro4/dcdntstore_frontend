@@ -1,0 +1,118 @@
+.bp3-button {
+    transition: all 0.15s;
+    font-size: 13px;
+    padding: 10px 15px;
+}
+
+.bp3-button-text {
+    position: relative;
+    top: -1px;
+    letter-spacing: 0.3px;
+}
+
+.bp3-button:not([class*="bp3-intent-"]) {
+    border: none;
+    box-shadow: none;
+    background: $light-gray3;
+   
+
+    &:hover {
+        border: none;
+        box-shadow: none;
+        background: $light-gray2;
+    }
+
+    &:active {
+        border: none;
+        box-shadow: none;
+        background: $light-gray1;
+    }
+
+    &.bp3-minimal {
+        background: none;
+
+        &:hover {
+            background: rgba($gray3, 0.3)
+        }
+
+        &:active {
+            background: rgba($gray3, 0.4)
+        }
+    }
+}
+
+.bp3-button.bp3-intent-primary {
+    border: none;
+    box-shadow: none;
+    background: $cobalt4;
+   
+
+    &:hover {
+        border: none;
+        box-shadow: none;
+        background: $cobalt3;
+    }
+
+    &:active {
+        border: none;
+        box-shadow: none;
+        background: $cobalt2;
+    }
+}
+
+.bp3-button.bp3-intent-warning {
+    border: none;
+    box-shadow: none;
+    background: $orange4;
+   
+
+    &:hover {
+        border: none;
+        box-shadow: none;
+        background: $orange3;
+    }
+
+    &:active {
+        border: none;
+        box-shadow: none;
+        background: $orange2;
+    }
+}
+
+.bp3-button.bp3-intent-success {
+    border: none;
+    box-shadow: none;
+    background: $green4;
+   
+
+    &:hover {
+        border: none;
+        box-shadow: none;
+        background: $green3;
+    }
+
+    &:active {
+        border: none;
+        box-shadow: none;
+        background: $green2;
+    }
+}
+
+.bp3-button.bp3-intent-danger {
+    border: none;
+    box-shadow: none;
+    background: $red4;
+   
+
+    &:hover {
+        border: none;
+        box-shadow: none;
+        background: $red3;
+    }
+
+    &:active {
+        border: none;
+        box-shadow: none;
+        background: $red2;
+    } 
+}
