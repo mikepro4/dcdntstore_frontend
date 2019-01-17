@@ -3,9 +3,21 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Icon, Button } from "@blueprintjs/core";
 
+import {
+	createShape
+} from '../../../../redux/actions/manager/shapeActions'
+
 class ShapesPage extends Component {
 	state = {
 	};
+
+	createShape = () => {
+		this.props.createShape({
+			title: "Untitled"
+		}, (data) => {
+			this.props.history.push(`/manager/shapes/${data._id}`);
+		})
+	}
 
 	renderHead = () => (
 		<Helmet>
@@ -29,6 +41,7 @@ class ShapesPage extends Component {
 									icon="add"
 									intent="primary"
 									text="Add new shape"
+									onClick={() => this.createShape()}
 								/>
 							</li>
 							<li>
@@ -79,5 +92,7 @@ function mapStateToProps() {
 }
 
 export default {
-	component: connect(mapStateToProps, {})(ShapesPage)
+	component: connect(mapStateToProps, {
+		createShape
+	})(ShapesPage)
 }
