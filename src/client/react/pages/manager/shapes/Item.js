@@ -5,13 +5,33 @@ import { Icon, Button } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
 
 import {
-	createShape
+	loadShape,
+	clearCurrentShape,
+	updateShape
 } from '../../../../redux/actions/manager/shapeActions'
 
 
-class ShapesPage extends Component {
+class ShapePage extends Component {
+	static loadData(store, match) {
+		return store.dispatch(loadShape(match.params.shapeId));
+	}
+
 	state = {
 	};
+
+	componentDidMount() {
+		this.props.loadShape(this.props.match.params.shapeId)
+	}
+
+	componentWillUnmount() {
+		this.props.clearCurrentShape()
+	}
+
+	componentDidUpdate(prevprops) {
+		if(prevprops.match.params.shapeId !== this.props.match.params.shapeId) {
+			this.props.loadShape(this.props.match.params.shapeId)
+		}
+	}
 
 	renderHead = () => (
 		<Helmet>
@@ -22,7 +42,7 @@ class ShapesPage extends Component {
 
 	render() {
 		return (
-            <div className="route-container route-shapes">
+            <div className="route-container route-details">
                 <div className="route-header">
 					<div className="route-header-left">
                         <div className="route-header-back">
@@ -65,13 +85,16 @@ class ShapesPage extends Component {
 	}
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
 	return {
+		current: state.shapes.current
 	};
 }
 
 export default {
 	component: connect(mapStateToProps, {
-		createShape
-	})(ShapesPage)
+		loadShape,
+		clearCurrentShape,
+		updateShape
+	})(ShapePage)
 }
