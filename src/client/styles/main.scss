@@ -91,5 +91,7 @@ body {
 	right: 0;
 	bottom: 0;
 	
-	@import "../react/pages/manager/index.scss"
+	@import "../react/pages/manager/index.scss";
+	@import "../react/components/list/list_header.scss";
+	@import "../react/components/list/list_results.scss";
 }

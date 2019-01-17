@@ -1,0 +1,15 @@
+.list-header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: $lightBorder;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0 15px;
+    align-items: center;
+
+    .list-header-count {
+        position: relative;
+        top: -2px;
+    }
+}

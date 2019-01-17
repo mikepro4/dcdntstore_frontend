@@ -7,7 +7,7 @@ import { shapesReducer } from "./manager/shapesReducer";
 const REDUCERS_OBJECT = {
 	app: appReducer,
 	form: formReducer,
-	shapesReducer: shapesReducer,
+	shapes: shapesReducer,
 	router: routerReducer,
 };
 

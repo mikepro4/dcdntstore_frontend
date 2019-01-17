@@ -7,6 +7,9 @@ import {
 	createShape
 } from '../../../../redux/actions/manager/shapeActions'
 
+import Content from './Content'
+import Sidebar from './Sidebar'
+
 class ShapesPage extends Component {
 	state = {
 	};
@@ -78,8 +81,9 @@ class ShapesPage extends Component {
 					</div>
 				</div>
 
-				<div className="route-content">
-					content
+				<div className="route-content-container">
+					<Sidebar />
+					<Content />
 				</div>
             </div>
 		);

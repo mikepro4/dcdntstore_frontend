@@ -44,16 +44,23 @@ export const searchShapes = (
 	success
 ) => async (dispatch, getState, api) => {
 
+	let user = getState().app.user
+	let object = getState().shapes
+
 	dispatch({
 		type: SEARCH_SHAPES
 	});
 
+	let criteria = { }
+
 	const response = await api.post("/shapes/search", {
-		criteria,
-		sortProperty,
-		offset,
-		limit
-	});
+			criteria,
+			sortProperty: object.collectionSettings.sortProperty,
+			offset: object.collectionSettings.offset,
+			limit: object.collectionSettings.limit,
+			order: object.collectionSettings.order 
+		}
+	);
 
 	dispatch({
 		type: SEARCH_SHAPES_SUCCESS,

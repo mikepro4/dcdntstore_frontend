@@ -13,6 +13,10 @@ import {
 } from "./redux/actions/appActions";
 
 class App extends Component {
+	static loadData(store, match) {
+		return store.dispatch(fetchCurrentUser());
+	}
+	
 	state = {
 	};
 

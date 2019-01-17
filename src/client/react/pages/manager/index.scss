@@ -131,7 +131,7 @@
 
             .route-header {
                 height: 70px;
-                border-bottom: 1px solid $light-gray3;
+                border-bottom: $lightBorder;
                 display: flex;
                 flex-grow: 0;
                 flex-shrink: 0;
@@ -156,10 +156,25 @@
                 }
             }
 
-            .route-content {
+            .route-content-container {
                 flex-grow: 1;
                 flex-shrink: 1;
-                
+                position: relative;
+                display: flex;
+
+                .route-sidebar {
+                    width: 350px;
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    border-right: $lightBorder;
+                }
+
+                .route-content {
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    display: flex;
+                    flex-direction: column;
+                }
             }
         }
     }

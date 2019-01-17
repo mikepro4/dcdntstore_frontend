@@ -14,7 +14,17 @@ import {
     loading: false,
     current: {},
     loadedCollection: [],
+    loadedCollectionCount: null,
     updateCollection: false,
+    collectionFilters: [],
+    collectionSettings: {
+        results: "all",
+        order: -1,
+        sortProperty: "createdAt",
+        scrollPosition: 0,
+        offset: 0,
+        limit: 0
+    }
   };
   
   export const shapesReducer = (state = initialState, action) => {
@@ -29,7 +39,8 @@ import {
             return {
                 ...state,
                 loading: false,
-                loadedCollection: action.payload.all
+                loadedCollection: action.payload.all,
+                loadedCollectionCount: action.payload.count
             }
         case CREATE_SHAPE:
             return {
