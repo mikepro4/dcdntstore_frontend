@@ -9,25 +9,21 @@ class Header extends Component {
 		return this.props.user ? (
 			<div className="user-info">
 
-			<a onClick={() => this.createJam()} className="new-jam-button">
-				Create new jam
-			</a>
+				<div className="user-avatar-container">
+					<Link to={`/profile/${this.props.user._id}`}>
+						<img
+							className="user-avatar"
+							src={this.props.user.profile.photos[0].value}
+						/>
+						<span className="user-display-name">
+							{this.props.user.profile.displayName}
+						</span>
+					</Link>
+				</div>
 
-			<div className="user-avatar-container">
-				<Link to={`/profile/${this.props.user._id}`}>
-					<img
-						className="user-avatar"
-						src={this.props.user.profile.photos[0].value}
-					/>
-					<span className="user-display-name">
-						{this.props.user.profile.displayName}
-					</span>
-				</Link>
-			</div>
-
-			<a href="/api/logout" className="logout-button">
-				Logout
-			</a>
+				<a href="/api/logout" className="logout-button">
+					Logout
+				</a>
 
 			</div>
 		) : (
@@ -42,7 +38,8 @@ class Header extends Component {
 	render() {
 		return (
 			<div className="app-header">
-                {this.renderAuthButton()}
+				{this.renderAuthButton()}
+				<Link to="/manager">Manager</Link>
             </div>
 		);
 	}

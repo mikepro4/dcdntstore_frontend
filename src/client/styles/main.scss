@@ -20,8 +20,6 @@ body {
 	padding: 0;
 	font-family: "DCDNT", sans-serif;
 	font-weight: 400;
-	background: $backgroundColor;
-	color: $mainFontColor;
 	-webkit-font-smoothing: subpixel-antialiased;
 	// -webkit-overflow-scrolling: touch;
 	width: 100%;
@@ -49,23 +47,49 @@ body {
   color: $black;
 }
 
-// Links
+.screen {
+  height: 100vh;
+}
+
+// Store styles
 // -------------------------
 
-a {
+.app {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: $backgroundColor;
 	color: $mainFontColor;
-	text-decoration: none;
+	z-index: 1;
 
-	&:hover {
+	a {
 		color: $mainFontColor;
 		text-decoration: none;
-	}
 
-	&:active {
-		color: $mainFontColor;
+		&:hover {
+			color: $mainFontColor;
+			text-decoration: none;
+		}
+
+		&:active {
+			color: $mainFontColor;
+		}
 	}
 }
 
-.screen {
-  height: 100vh;
+// Manager styles
+// -------------------------
+
+.manager {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	@import "../react/pages/manager/index.scss"
 }

@@ -3,6 +3,7 @@ import { renderRoutes } from "react-router-config";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { FocusStyleManager } from "@blueprintjs/core";
+import classNames from "classnames"
 import Header from "./react/components/header"
 
 FocusStyleManager.onlyShowFocusOnTabs();
@@ -19,13 +20,22 @@ class App extends Component {
 		this.props.fetchCurrentUser();
 	}
 
+	isActiveManager = (pathname) => {
+		return this.props.location.pathname.indexOf('/manager') !== -1
+	}
+
 	render() {
 		return (
-			<div className="app">
+			<div 
+				className={classNames({
+					"manager": this.isActiveManager(),
+					"app": !this.isActiveManager()
+				},)}
+			>
 
 				<div className="app-container">
 
-					<Header/>
+					{!this.isActiveManager() && <Header/>}
 					<div className="app-content">
 						{renderRoutes(this.props.route.routes)}
 					</div>
