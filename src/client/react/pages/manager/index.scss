@@ -139,6 +139,14 @@
                 padding: 0 20px;
                 align-items: center;
 
+                .route-header-left {
+                    display: flex;
+
+                    .bp3-button {
+                        margin: 0 20px 0 0;
+                    }
+                }
+
                 .route-title {
                     font-size: 34px;
                     font-weight: 600;

@@ -2,29 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Icon, Button } from "@blueprintjs/core";
+import { Link } from "react-router-dom";
 
 import {
 	createShape
 } from '../../../../redux/actions/manager/shapeActions'
 
-import Content from './Content'
-import Sidebar from './Sidebar'
 
 class ShapesPage extends Component {
 	state = {
 	};
 
-	createShape = () => {
-		this.props.createShape({
-			title: "Untitled"
-		}, (data) => {
-			// this.props.history.push(`/manager/shapes/${data._id}`);
-		})
-	}
-
 	renderHead = () => (
 		<Helmet>
-			<title>Shapes Page</title>
+			<title>Shape Details Page</title>
 			<meta property="og:title" content="Homepage" />
 		</Helmet>
 	)
@@ -34,7 +25,17 @@ class ShapesPage extends Component {
             <div className="route-container route-shapes">
                 <div className="route-header">
 					<div className="route-header-left">
-						<div className="route-title">Shapes</div>
+                        <div className="route-header-back">
+                            <Link to="/manager/shapes">
+                                <Button
+                                    icon="arrow-left"
+                                    minimal="true"
+                                    large="true"
+                                    text="Back"
+                                />
+                            </Link>
+                        </div>
+						<div className="route-title">Shape Details</div>
 					</div>
 
 					<div className="route-header-right">
@@ -44,36 +45,11 @@ class ShapesPage extends Component {
 									icon="add"
 									intent="primary"
 									text="Add new shape"
-									onClick={() => this.createShape()}
 								/>
 							</li>
 							<li>
 								<Button
 									icon="add"
-									text="Add new shape"
-								/>
-							</li>
-
-							<li>
-								<Button
-									icon="add"
-									intent="warning"
-									text="Add new shape"
-								/>
-							</li>
-
-							<li>
-								<Button
-									icon="add"
-									intent="success"
-									text="Add new shape"
-								/>
-							</li>
-
-							<li>
-								<Button
-									icon="add"
-									intent="danger"
 									text="Add new shape"
 								/>
 							</li>
@@ -82,8 +58,7 @@ class ShapesPage extends Component {
 				</div>
 
 				<div className="route-content-container">
-					<Sidebar />
-					<Content />
+                    {this.props.match.params.shapeId}
 				</div>
             </div>
 		);

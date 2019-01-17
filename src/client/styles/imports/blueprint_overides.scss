@@ -3,6 +3,10 @@
     font-size: 13px;
     padding: 10px 15px;
     font-family: "DCDNT", sans-serif;
+
+    &:hover {
+        text-decoration: none
+    }
 }
 
 .bp3-button-text {
@@ -33,7 +37,8 @@
         background: none;
 
         &:hover {
-            background: rgba($gray3, 0.3)
+            background: rgba($gray3, 0.3);
+            text-decoration: none
         }
 
         &:active {

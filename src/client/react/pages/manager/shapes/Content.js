@@ -40,6 +40,10 @@ class Content extends Component {
 	changeCollectionOrder = () => {
 	}
 
+	deleteItem = (id) => {
+
+	}
+
 	render() {
 		return (
 			<div className="route-content">
@@ -49,7 +53,30 @@ class Content extends Component {
 					changeCollectionSortProperty={() => this.changeCollectionSortProperty()}
 					changeCollectionOrder={() => this.changeCollectionOrder() }
 				/>
-				<ListResults/>
+				<ListResults
+					collection={this.props.shapes.loadedCollection}
+					mainDisplayPropBig="title"
+					mainDisplayPropSmall="catalogNumber"
+					secondaryDisplayProps={[
+						{
+							property: "isHighlighted",
+							label: "Highlighted"
+						},
+						{
+							property: "status",
+							label: "Status"
+						},
+						,
+						{
+							property: "urlName",
+							label: "URL Name"
+						}
+					]}
+					itemUrl="/manager/shapes"
+					loading={this.props.shapes.loading}
+					displayImage={true}
+					deleteItem={(id) => this.props.deleteItem(id)}
+				/>
             </div>
 		);
 	}

@@ -51,6 +51,18 @@ body {
   height: 100vh;
 }
 
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&:active {
+		text-decoration: none;
+	}
+}
+
 // Store styles
 // -------------------------
 

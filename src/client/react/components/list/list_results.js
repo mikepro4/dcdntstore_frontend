@@ -2,12 +2,88 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
+import moment from 'moment'
+import { Button } from "@blueprintjs/core";
 
 class ListResults extends Component {
+	renderImage = (item) => {
+		if(item.metadata.images && item.metadata.images.small) {
+			return (
+				<div className="item-avatar">
+					<img src={item.metadata.images.small}/>
+				</div>
+			)
+		}
+
+		return (
+			<div className="item-avatar">
+			</div>
+		)
+	}
+	renderMainProps = (item) => {
+		return (
+			<div className="item-main-details">
+				<div className="item-main-details-small">
+					{item.metadata[this.props.mainDisplayPropSmall]}
+				</div>
+				<div className="item-main-details-big">
+					{item.metadata[this.props.mainDisplayPropBig]}
+				</div>
+				<div className="created-date">
+					Created {moment(item.createdAt).fromNow()}
+				</div>
+			</div>
+		)
+	}
+
+	renderSecondaryProps = (item) => {
+		return (
+			<div className="item-secondary-details">
+				{this.props.secondaryDisplayProps.map(prop => {
+					return (
+						<div className="item-secondary-detail" key={prop.property}>
+							<div className="detail-label">
+								{prop.label}
+							</div>
+							<div className="detail-value">
+								{String(item.metadata[prop.property])}
+							</div>
+						</div>
+					)
+				})}
+			</div>
+		)
+	}
 	render() {
 		return (
 			<div className="list-results">
-                list results
+				{this.props.collection.map(item => {
+					return (
+						<div className="list-result-item" key={item._id}>
+							<div className="list-result-item-top">
+								<div className="list-result-item-top-left">
+									{this.props.displayImage && this.renderImage(item)}
+									{this.renderMainProps(item)}
+								</div>
+
+								<div className="list-result-item-top-right">
+									<Link to={`${this.props.itemUrl}/${item._id}`}>
+										<Button
+											rightIcon="arrow-right"
+											minimal="true"
+											large="true"
+											text="View item"
+										/>
+									</Link>
+								</div>
+							</div>
+
+							<div className="list-result-item-bottom">
+								{this.renderSecondaryProps(item)}
+							</div>
+						</div>
+					)
+				})}
             </div>
 		);
 	}
