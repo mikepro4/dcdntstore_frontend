@@ -32,31 +32,43 @@ class ListHeader extends Component {
                 </div>
 
                 <div className="list-header-right">
-					<Select
-						items={[
-							{
-								value: -1,
-								label: "DESC"
-							},
-							{
-								value: 1,
-								label: "ASC"
-							}
-						]}
-						itemRenderer={this.renderItem}
-						filterable={false}
-						onItemSelect={(item) => this.props.updateShapeCollectionSettings(item, "order")}
-					>
-						Sort by: {this.props.shapes.collectionSettings.order.label}
-					</Select>
-					<Select
-						items={this.props.sortProperties}
-						itemRenderer={this.renderItem}
-						filterable={false}
-						onItemSelect={(item) => this.props.updateShapeCollectionSettings(item, "sortProperty")}
-					>
-						Sort by: {this.props.shapes.collectionSettings.sortProperty.label}
-					</Select>
+					<div className="sort-control">
+						<Select
+							items={[
+								{
+									value: -1,
+									label: "DESC"
+								},
+								{
+									value: 1,
+									label: "ASC"
+								}
+							]}
+							itemRenderer={this.renderItem}
+							filterable={false}
+							onItemSelect={(item) => this.props.updateShapeCollectionSettings(item, "order")}
+						>
+							<span className="sort-label">Order:</span> 
+							<span className="sort-value">
+								{this.props.shapes.collectionSettings.order.label}
+								<span className={`bp3-icon bp3-icon-caret-down`} />
+							</span>
+						</Select>
+					</div>
+					<div className="sort-control">
+						<Select
+							items={this.props.sortProperties}
+							itemRenderer={this.renderItem}
+							filterable={false}
+							onItemSelect={(item) => this.props.updateShapeCollectionSettings(item, "sortProperty")}
+						>
+							<span className="sort-label">Sort by:</span> 
+							<span className="sort-value">
+								{this.props.shapes.collectionSettings.sortProperty.label}
+								<span className={`bp3-icon bp3-icon-caret-down`} />
+							</span>
+						</Select>
+					</div>
                 </div>
             </div>
 		);
