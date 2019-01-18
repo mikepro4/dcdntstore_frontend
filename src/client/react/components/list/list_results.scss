@@ -46,7 +46,7 @@
             .item-main-details {
                 .item-main-details-small {
                     font-size: 11px;
-                    margin: 0 0 3px 0;
+                    margin: 0 0 5px 0;
                     letter-spacing: 0.7px;
                     color: $gray3;
                 }
@@ -57,12 +57,12 @@
                     line-height: 30px;
                     letter-spacing: 0.7px;
                 }
+            }
 
-                .created-date {
-                    font-size: 10px;
-                    color: $gray3;
-                    margin: 5px 0 0 0;
-                }
+            .created-date {
+                font-size: 14px;
+                color: $gray3;
+                margin: 0 20px 0 0;
             }
         }
 

@@ -10,7 +10,8 @@ import {
 	loadShape,
 	deleteShape,
 	clearCurrentShape,
-	updateShape
+	updateShape,
+	resetShapeFilters
 } from '../../../../redux/actions/manager/shapeActions'
 
 import {
@@ -96,7 +97,8 @@ class ShapePage extends Component {
                                     icon="arrow-left"
                                     minimal="true"
                                     large="true"
-                                    text="Back"
+									text="Back"
+									onClick={() => this.props.resetShapeFilters()}
                                 />
                             </Link>
                         </div>
@@ -162,6 +164,7 @@ export default {
 		deleteShape,
 		submitForm,
 		showConfirmDelete,
-		hideConfirmDelete
+		hideConfirmDelete,
+		resetShapeFilters
 	})(ShapePage)
 }

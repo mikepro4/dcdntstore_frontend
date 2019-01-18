@@ -136,7 +136,7 @@
                 flex-grow: 0;
                 flex-shrink: 0;
                 justify-content: space-between;
-                padding: 0 20px;
+                padding: 0 15px;
                 align-items: center;
                 background: $white;
 
@@ -176,6 +176,62 @@
                     flex-grow: 0;
                     flex-shrink: 0;
                     border-right: $lightBorder;
+                    display: flex;
+                    flex-direction: column;
+
+                    .route-sidebar-header {
+                        display: flex;
+                        justify-content: space-between;
+                        border-bottom: $lightBorder;
+                        height: 50px; 
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                        align-items: center;
+                        padding: 0 15px;
+
+                        .route-sidebar-header-section {
+                            position: relative;
+                            top: -1px;
+
+                            .route-sidebar-header-title {
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                letter-spacing: 0.8px;
+                                font-weight: bold;
+                            }
+
+                            .bp3-button {
+                                margin: 0 0 0 5px
+                            }
+                        }
+                    }
+
+                    .route-sidebar-content {
+                        display: flex;
+                        flex-grow: 1;
+                        flex-shrink: 1;
+                        padding: 15px;
+                        overflow-y: auto;
+
+                        .item-filters-form {
+                            width: 100%;
+                        }
+
+                        .input-group {
+                            flex-direction: column;
+
+                            .input-label {
+                                margin: 0 0 5px 0;
+                                letter-spacing: 0.5px;
+                            }
+                        }
+
+                        .input-group .input-group-right .input-error {
+                            top: -20px;
+                            right: 0;
+                            left: inherit;
+                        }
+                    }
                 }
 
                 .route-content {

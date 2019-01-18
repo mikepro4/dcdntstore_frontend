@@ -22,6 +22,9 @@ export const UPDATE_SHAPE_SUCCESS = "app/UPDATE_SHAPE_SUCCESS";
 
 export const CLEAR_CURRENT_SHAPE = "app/CLEAR_CURRENT_SHAPE";
 
+export const UPDATE_SHAPE_FILTERS = "app/UPDATE_SHAPE_FILTERS";
+export const RESET_SHAPE_FILTERS = "app/RESET_SHAPE_FILTERS";
+
 
 // =============================================================================
 

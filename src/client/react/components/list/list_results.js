@@ -29,9 +29,6 @@ class ListResults extends Component {
 				<div className="item-main-details-big">
 					{item.metadata[this.props.mainDisplayPropBig]}
 				</div>
-				<div className="created-date">
-					Created {moment(item.createdAt).fromNow()}
-				</div>
 			</div>
 		)
 	}
@@ -69,6 +66,9 @@ class ListResults extends Component {
 									</div>
 
 									<div className="list-result-item-top-right">
+											<div className="created-date">
+												Created {moment(item.createdAt).fromNow()}
+											</div>
 											<Button
 												rightIcon="arrow-right"
 												minimal="true"

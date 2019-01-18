@@ -47,6 +47,21 @@
     }
 }
 
+.bp3-button.bp3-minimal.bp3-intent-primary {
+    background: rgba($cobalt4, 0.1);
+    color: $cobalt4;
+
+    &:hover {
+        background: rgba($cobalt4, 0.2);
+        color: $cobalt4;
+    }
+
+    &:active {
+        background: rgba($cobalt4, 0.3);
+        color: $cobalt4;
+    }
+}
+
 .bp3-button.bp3-intent-primary {
     border: none;
     box-shadow: none;

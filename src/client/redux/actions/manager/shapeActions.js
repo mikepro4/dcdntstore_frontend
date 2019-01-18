@@ -9,8 +9,12 @@ import {
   LOAD_SHAPE_SUCCESS,
   CLEAR_CURRENT_SHAPE,
   UPDATE_SHAPE,
-  UPDATE_SHAPE_SUCCESS
+  UPDATE_SHAPE_SUCCESS,
+  UPDATE_SHAPE_FILTERS,
+	RESET_SHAPE_FILTERS
 } from "../../actions/types";
+
+import { reset } from "redux-form";
 
 // =============================================================================
 
@@ -51,7 +55,7 @@ export const searchShapes = (
 		type: SEARCH_SHAPES
 	});
 
-	let criteria = { }
+	let criteria = getState().shapes.collectionFilters
 
 	const response = await api.post("/shapes/search", {
 			criteria,
@@ -157,5 +161,28 @@ export const clearCurrentShape = (success) => async (
 		success(response.data);
 	}
 };
+
+// =============================================================================
+
+export const updateShapeFilters = (filters) => async (
+	dispatch
+) => {
+
+    dispatch({
+		type: UPDATE_SHAPE_FILTERS,
+		payload: filters
+	});
+}
+
+export const resetShapeFilters = () => async (
+	dispatch
+) => {
+
+    dispatch({
+		type: RESET_SHAPE_FILTERS,
+	});
+
+	dispatch(reset("shape_filters"));
+}
 
 // =============================================================================

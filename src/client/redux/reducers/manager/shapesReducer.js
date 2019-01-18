@@ -7,8 +7,12 @@ import {
     LOAD_SHAPE_SUCCESS,
     CLEAR_CURRENT_SHAPE,
     UPDATE_SHAPE,
-    UPDATE_SHAPE_SUCCESS
+    UPDATE_SHAPE_SUCCESS,
+    UPDATE_SHAPE_FILTERS,
+    RESET_SHAPE_FILTERS
   } from "../../actions/types";
+
+  import * as _ from "lodash";
   
   export const initialState = {
     loading: false,
@@ -16,7 +20,7 @@ import {
     loadedCollection: [],
     loadedCollectionCount: null,
     updateCollection: false,
-    collectionFilters: [],
+    collectionFilters: {},
     collectionSettings: {
         results: "all",
         order: -1,
@@ -79,8 +83,18 @@ import {
                 loading: false,
                 current: action.payload
             }
-            default:
-                return state;
+        case UPDATE_SHAPE_FILTERS:
+            return {
+                ...state,
+                collectionFilters: action.payload
+            }
+        case RESET_SHAPE_FILTERS:
+            return {
+                ...state,
+                collectionFilters: {}
+            }
+        default:
+            return state;
         }
   };
   
