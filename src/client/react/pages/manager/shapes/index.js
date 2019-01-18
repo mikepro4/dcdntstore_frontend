@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { Icon, Button } from "@blueprintjs/core";
+import { Icon, Button, Position, Toaster, Classes, Intent } from "@blueprintjs/core";
 
 import {
 	createShape
@@ -19,7 +19,15 @@ class ShapesPage extends Component {
 			title: "Untitled"
 		}, (data) => {
 			// this.props.history.push(`/manager/shapes/${data._id}`);
+			this.createShapeToast()
 		})
+	}
+
+	createShapeToast = () => {
+		this.refs.toaster.show({
+		  message: "Shape successully created",
+		  intent: Intent.PRIMARY
+		});
 	}
 
 	renderHead = () => (
@@ -32,6 +40,7 @@ class ShapesPage extends Component {
 	render() {
 		return (
             <div className="route-container route-shapes">
+				<Toaster position={Position.BOTTOM_RIGHT} ref="toaster" />
                 <div className="route-header">
 					<div className="route-header-left">
 						<div className="route-title">Shapes</div>

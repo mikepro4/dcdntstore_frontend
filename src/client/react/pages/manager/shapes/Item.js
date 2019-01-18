@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { Icon, Button } from "@blueprintjs/core";
+import { Icon, Button, Position, Toaster, Classes, Intent  } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
 
 import ConfirmDelete from "../ConfirmDelete";
@@ -49,6 +49,21 @@ class ShapePage extends Component {
 
 	saveShape = () => {
 		this.props.submitForm("shape_edit")
+		this.saveShapeToast()
+	}
+
+	saveShapeToast = () => {
+		this.refs.toaster.show({
+		  message: "Shape successully saved",
+		  intent: Intent.PRIMARY
+		});
+	}
+
+	deleteShapeToast = () => {
+		this.refs.toaster.show({
+		  message: "Shape successully deleted",
+		  intent: Intent.DANGER
+		});
 	}
 
 	showConfirmDialog = () => {
@@ -56,10 +71,10 @@ class ShapePage extends Component {
 	}
 
 	deleteShape = () => {
-		// console.log("delete shape")
 		this.props.deleteShape(this.props.current._id)
 		this.props.history.push(`/manager/shapes/`);
 		this.props.hideConfirmDelete()
+		this.deleteShapeToast()
 	}
 	
 
@@ -73,6 +88,7 @@ class ShapePage extends Component {
 	render() {
 		return (
             <div className="route-container route-details">
+				<Toaster position={Position.BOTTOM_RIGHT} ref="toaster" />
                 <div className="route-header">
 					<div className="route-header-left">
                         <div className="route-header-back">
@@ -113,7 +129,9 @@ class ShapePage extends Component {
 				<div className="route-content-container">
 					<div className="item-container">
 						<div className="item-details-container">
-							<ItemDetails />
+							<ItemDetails 
+								showSaveToast={() => this.saveShapeToast()}
+							/>
 						</div>
 
 						<div className="item-sidebar">

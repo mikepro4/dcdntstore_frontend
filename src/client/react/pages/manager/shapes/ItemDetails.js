@@ -13,6 +13,7 @@ class ItemDetails extends Component {
 	handleSubmit = values => {
 		let newShapeValues = _.merge({}, this.props.shape.metadata, values)
 		this.props.updateShape(this.props.shape._id, newShapeValues)
+		this.props.showSaveToast()
 	}
 	render() {
 		return (

@@ -157,6 +157,38 @@ class ItemDetailsForm extends Component {
                         ref="behance"
                     />
 
+                    <Field
+                        name="math.function"
+                        component={Input}
+                        label="Math – Function"
+                        placeholder="Type..."
+                        ref="function"
+                    />
+
+                    <Field
+                        name="math.bold"
+                        component={Input}
+                        label="Math – bold"
+                        placeholder="Type..."
+                        ref="bold"
+                    />
+
+                    <Field
+                        name="math.step"
+                        component={Input}
+                        label="Math – step"
+                        placeholder="Type..."
+                        ref="step"
+                    />
+
+                    <Field
+                        name="math.freq"
+                        component={Input}
+                        label="Math – freq"
+                        placeholder="Type..."
+                        ref="freq"
+                    />
+
 		            <Button
                         style={{display: "none"}}
                         loading={this.props.loading}
