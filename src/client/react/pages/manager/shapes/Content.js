@@ -32,19 +32,6 @@ class Content extends Component {
 		this.props.searchShapes();
 	}
 
-	changeCollectionDisplayLimit = () => {
-	}
-
-	changeCollectionSortProperty = () => {
-	}
-
-	changeCollectionOrder = () => {
-	}
-
-	deleteItem = (id) => {
-
-	}
-
 	render() {
 		return (
 			<div className="route-content">
