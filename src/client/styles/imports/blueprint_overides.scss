@@ -122,3 +122,33 @@
         background: $red2;
     } 
 }
+
+
+.bp3-dialog-header {
+	box-shadow: none;
+	// position: absolute;
+	// top: 20px;
+	// right: 25px;
+	// padding: 0;
+    // min-height: inherit;
+    
+    .bp3-heading {
+        margin: 15px 0 0 0;
+    }
+}
+
+.bp3-dialog-body {
+	margin: 10px 20px 20px 20px;
+}
+
+.bp3-dialog-footer {
+	margin: 0 20px;
+}
+
+.bp3-dialog-container .bp3-dialog {
+	position: relative !important;
+	background: #ffffff;
+	box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.08);
+	border-radius: 5px;
+	padding-bottom: 30px;
+}

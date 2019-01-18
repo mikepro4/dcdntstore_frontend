@@ -47,36 +47,6 @@ class ShapesPage extends Component {
 									onClick={() => this.createShape()}
 								/>
 							</li>
-							<li>
-								<Button
-									icon="add"
-									text="Add new shape"
-								/>
-							</li>
-
-							<li>
-								<Button
-									icon="add"
-									intent="warning"
-									text="Add new shape"
-								/>
-							</li>
-
-							<li>
-								<Button
-									icon="add"
-									intent="success"
-									text="Add new shape"
-								/>
-							</li>
-
-							<li>
-								<Button
-									icon="add"
-									intent="danger"
-									text="Add new shape"
-								/>
-							</li>
 						</ul>
 					</div>
 				</div>

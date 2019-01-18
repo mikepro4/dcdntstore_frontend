@@ -4,11 +4,25 @@ import { Helmet } from "react-helmet";
 import { Icon, Button } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
 
+import ConfirmDelete from "../ConfirmDelete";
+
 import {
 	loadShape,
+	deleteShape,
 	clearCurrentShape,
 	updateShape
 } from '../../../../redux/actions/manager/shapeActions'
+
+import {
+	submitForm
+} from '../../../../redux/actions/formActions'
+
+import {
+	showConfirmDelete,
+	hideConfirmDelete
+} from '../../../../redux/actions/modalActions'
+
+import ItemDetails from './ItemDetails'
 
 
 class ShapePage extends Component {
@@ -32,6 +46,22 @@ class ShapePage extends Component {
 			this.props.loadShape(this.props.match.params.shapeId)
 		}
 	}
+
+	saveShape = () => {
+		this.props.submitForm("shape_edit")
+	}
+
+	showConfirmDialog = () => {
+		this.props.showConfirmDelete()
+	}
+
+	deleteShape = () => {
+		// console.log("delete shape")
+		this.props.deleteShape(this.props.current._id)
+		this.props.history.push(`/manager/shapes/`);
+		this.props.hideConfirmDelete()
+	}
+	
 
 	renderHead = () => (
 		<Helmet>
@@ -65,6 +95,7 @@ class ShapePage extends Component {
 									icon="floppy-disk"
 									intent="primary"
 									text="Save shape"
+									onClick={() => this.saveShape()}
 								/>
 							</li>
 							<li>
@@ -72,6 +103,7 @@ class ShapePage extends Component {
 									icon="trash"
 									intent="danger"
 									text="Delete shape"
+									onClick={() => this.showConfirmDialog()}
 								/>
 							</li>
 						</ul>
@@ -81,9 +113,7 @@ class ShapePage extends Component {
 				<div className="route-content-container">
 					<div className="item-container">
 						<div className="item-details-container">
-							<div className="item-details">
-								details here
-							</div>
+							<ItemDetails />
 						</div>
 
 						<div className="item-sidebar">
@@ -91,6 +121,11 @@ class ShapePage extends Component {
 						</div>
 					</div>
 				</div>
+
+				<ConfirmDelete 
+					confirmDelete={() => this.deleteShape()} 
+				/>
+
             </div>
 		);
 	}
@@ -106,6 +141,10 @@ export default {
 	component: connect(mapStateToProps, {
 		loadShape,
 		clearCurrentShape,
-		updateShape
+		updateShape,
+		deleteShape,
+		submitForm,
+		showConfirmDelete,
+		hideConfirmDelete
 	})(ShapePage)
 }

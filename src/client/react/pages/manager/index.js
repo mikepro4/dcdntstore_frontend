@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { Icon, Button } from "@blueprintjs/core";
 
+
 import NavLinks from '../../components/nav'
 
 class Manager extends Component {
@@ -124,6 +125,7 @@ class Manager extends Component {
 					<div className="manager-content">
 							{renderRoutes(this.props.route.routes)}
 					</div>
+
 			</div>
 		)
 	}

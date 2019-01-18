@@ -21,3 +21,11 @@ export const UPDATE_SHAPE = "app/UPDATE_SHAPE";
 export const UPDATE_SHAPE_SUCCESS = "app/UPDATE_SHAPE_SUCCESS";
 
 export const CLEAR_CURRENT_SHAPE = "app/CLEAR_CURRENT_SHAPE";
+
+
+// =============================================================================
+
+//Modals
+
+export const SHOW_MODAL_CONFIRM_DELETE = "app/SHOW_MODAL_CONFIRM_DELETE";
+export const HIDE_MODAL_CONFIRM_DELETE = "app/HIDE_MODAL_CONFIRM_DELETE";
