@@ -7,6 +7,8 @@ import {
 	updateShape
 } from '../../../../redux/actions/manager/shapeActions'
 
+import ImageUploader from '../../../components/imageUploader/index'
+
 import ItemDetailsForm from "./ItemDetailsForm"
 
 class ItemDetails extends Component {
@@ -15,9 +17,50 @@ class ItemDetails extends Component {
 		this.props.updateShape(this.props.shape._id, newShapeValues)
 		this.props.showSaveToast()
 	}
+
+	updateImage = (url, size) => {
+		let newShapeImages = _.merge({}, this.props.shape.metadata.images, {
+			[size]: url
+		})
+
+		let newShapeValues = _.merge({}, this.props.shape.metadata, {
+			images: newShapeImages
+		})
+		this.props.updateShape(this.props.shape._id, newShapeValues)
+		this.props.showSaveToast()
+	}
+
 	render() {
 		return (
 			<div className="item-details">
+				<div className="item-images">
+					<div className="item-image-large">
+						Large:
+						<ImageUploader 
+							onSuccess={(url) => this.updateImage(url, "large")}
+							preset="shape_large"
+							canUpload="true"
+						/>
+					</div>
+
+					<div className="item-image-large">
+						Medium:
+						<ImageUploader 
+							onSuccess={(url) => this.updateImage(url, "medium")}
+							preset="shape_medium"
+							canUpload="true"
+						/>
+					</div>
+
+					<div className="item-image-large">
+						Small:
+						<ImageUploader 
+							onSuccess={(url) => this.updateImage(url, "small")}
+							preset="shape_small"
+							canUpload="true"
+						/>
+					</div>
+				</div>
                 <ItemDetailsForm
 					ref="ItemDetails"
 					enableReinitialize="true"
