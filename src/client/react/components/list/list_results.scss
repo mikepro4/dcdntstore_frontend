@@ -11,6 +11,14 @@
         border: $lightBorder;
         background: $white;
         border-radius: 3px;
+        
+        a {
+            color: $black;
+
+            &:hover {
+                color: $cobalt4;
+            }
+        }
 
         .list-result-item-top {
             padding: 10px;
@@ -28,6 +36,11 @@
                 width: 70px;
                 height: 70px;
                 background: $light-gray3;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
             }
 
             .item-main-details {

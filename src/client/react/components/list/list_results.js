@@ -60,27 +60,31 @@ class ListResults extends Component {
 				{this.props.collection.map(item => {
 					return (
 						<div className="list-result-item" key={item._id}>
-							<div className="list-result-item-top">
-								<div className="list-result-item-top-left">
-									{this.props.displayImage && this.renderImage(item)}
-									{this.renderMainProps(item)}
+							<Link to={`${this.props.itemUrl}/${item._id}`}>
+
+								<div className="list-result-item-top">
+									<div className="list-result-item-top-left">
+										{this.props.displayImage && this.renderImage(item)}
+										{this.renderMainProps(item)}
+									</div>
+
+									<div className="list-result-item-top-right">
+											<Button
+												rightIcon="arrow-right"
+												minimal="true"
+												large="true"
+												text="View item"
+											/>
+									</div>
+
 								</div>
 
-								<div className="list-result-item-top-right">
-									<Link to={`${this.props.itemUrl}/${item._id}`}>
-										<Button
-											rightIcon="arrow-right"
-											minimal="true"
-											large="true"
-											text="View item"
-										/>
-									</Link>
+								<div className="list-result-item-bottom">
+									{this.renderSecondaryProps(item)}
 								</div>
-							</div>
 
-							<div className="list-result-item-bottom">
-								{this.renderSecondaryProps(item)}
-							</div>
+							</Link>
+
 						</div>
 					)
 				})}

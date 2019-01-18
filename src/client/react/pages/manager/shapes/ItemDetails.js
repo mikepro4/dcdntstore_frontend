@@ -34,34 +34,35 @@ class ItemDetails extends Component {
 		return (
 			<div className="item-details">
 				<div className="item-images">
-					<div className="item-image-large">
-						Large:
-						<ImageUploader 
-							onSuccess={(url) => this.updateImage(url, "large")}
-							preset="shape_large"
-							canUpload="true"
-							imageUrl={this.props.shape.metadata && this.props.shape.metadata.images.large}
-						/>
+					<div className="item-images-left">
+						<div className="item-image item-image-large">
+							<ImageUploader 
+								onSuccess={(url) => this.updateImage(url, "large")}
+								preset="shape_large"
+								canUpload="true"
+								imageUrl={this.props.shape.metadata && this.props.shape.metadata.images.large}
+							/>
+						</div>
 					</div>
 
-					<div className="item-image-large">
-						Medium:
-						<ImageUploader 
-							onSuccess={(url) => this.updateImage(url, "medium")}
-							preset="shape_medium"
-							canUpload="true"
-							imageUrl={this.props.shape.metadata && this.props.shape.metadata.images.medium}
-						/>
-					</div>
+					<div className="item-images-right">
+						<div className="item-image item-image-medium">
+							<ImageUploader 
+								onSuccess={(url) => this.updateImage(url, "medium")}
+								preset="shape_medium"
+								canUpload="true"
+								imageUrl={this.props.shape.metadata && this.props.shape.metadata.images.medium}
+							/>
+						</div>
 
-					<div className="item-image-large">
-						Small:
-						<ImageUploader 
-							onSuccess={(url) => this.updateImage(url, "small")}
-							preset="shape_small"
-							canUpload="true"
-							imageUrl={this.props.shape.metadata && this.props.shape.metadata .images.small}
-						/>
+						<div className="item-image item-image-small">
+							<ImageUploader 
+								onSuccess={(url) => this.updateImage(url, "small")}
+								preset="shape_small"
+								canUpload="true"
+								imageUrl={this.props.shape.metadata && this.props.shape.metadata .images.small}
+							/>
+						</div>
 					</div>
 				</div>
                 <ItemDetailsForm

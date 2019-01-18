@@ -49,7 +49,6 @@ class ShapePage extends Component {
 
 	saveShape = () => {
 		this.props.submitForm("shape_edit")
-		this.saveShapeToast()
 	}
 
 	saveShapeToast = () => {

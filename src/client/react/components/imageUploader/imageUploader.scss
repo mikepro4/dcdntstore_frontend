@@ -8,9 +8,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
 
 	&.empty-image {
-		background: $light-gray1;
+		background: $light-gray3;
 		border-radius: 3px;
 
 		.empty-image-container {
