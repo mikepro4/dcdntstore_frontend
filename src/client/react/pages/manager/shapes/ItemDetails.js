@@ -40,6 +40,7 @@ class ItemDetails extends Component {
 							onSuccess={(url) => this.updateImage(url, "large")}
 							preset="shape_large"
 							canUpload="true"
+							imageUrl={this.props.shape.metadata && this.props.shape.metadata.images.large}
 						/>
 					</div>
 
@@ -49,6 +50,7 @@ class ItemDetails extends Component {
 							onSuccess={(url) => this.updateImage(url, "medium")}
 							preset="shape_medium"
 							canUpload="true"
+							imageUrl={this.props.shape.metadata && this.props.shape.metadata.images.medium}
 						/>
 					</div>
 
@@ -58,6 +60,7 @@ class ItemDetails extends Component {
 							onSuccess={(url) => this.updateImage(url, "small")}
 							preset="shape_small"
 							canUpload="true"
+							imageUrl={this.props.shape.metadata && this.props.shape.metadata .images.small}
 						/>
 					</div>
 				</div>
