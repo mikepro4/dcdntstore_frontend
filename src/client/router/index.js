@@ -5,6 +5,7 @@ import Shapes from "../react/pages/manager/shapes";
 import Products from "../react/pages/manager/products";
 import Users from "../react/pages/manager/users";
 import Shape from "../react/pages/manager/shapes/Item";
+import Product from "../react/pages/manager/products/Item";
 
 export default [
 	{
@@ -47,6 +48,14 @@ export default [
 						exact: true,
 						params: {
 							name: "manager_products"
+						}
+					},
+					{
+						...Product,
+						path: "/manager/products/:productId",
+						exact: true,
+						params: {
+							name: "manager_product_details"
 						}
 					},
 					{

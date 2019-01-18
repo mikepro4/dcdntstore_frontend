@@ -6,9 +6,9 @@ import ListHeader from '../../../components/list/list_header'
 import ListResults from '../../../components/list/List_results'
 
 import {
-	searchShapes,
-	updateShapeCollectionSettings
-} from '../../../../redux/actions/manager/shapeActions'
+	searchProducts,
+	updateProductCollectionSettings
+} from '../../../../redux/actions/manager/productActions'
 
 class Content extends Component {
 
@@ -23,21 +23,21 @@ class Content extends Component {
 			this.loadCollection()
 		}
 
-		if(prevprops.shapes.updateCollection !== this.props.shapes.updateCollection) {
+		if(prevprops.products.updateCollection !== this.props.products.updateCollection) {
 			this.loadCollection()
 		}
 	}
 
 	loadCollection = () => {
-		this.props.searchShapes();
+		this.props.searchProducts();
 	}
 
 	render() {
 		return (
 			<div className="route-content">
 				<ListHeader
-					count={this.props.shapes.loadedCollectionCount}
-					updateShapeCollectionSettings={(item, prop) => this.props.updateShapeCollectionSettings(item, prop)}
+					count={this.props.products.loadedCollectionCount}
+					updateProductCollectionSettings={(item, prop) => this.props.updateProductCollectionSettings(item, prop)}
 					sortProperties={[
 						{
 							value: "createdAt",
@@ -58,25 +58,13 @@ class Content extends Component {
 					]}
 				/>
 				<ListResults
-					collection={this.props.shapes.loadedCollection}
+					collection={this.props.products.loadedCollection}
 					mainDisplayPropBig="title"
 					mainDisplayPropSmall="catalogNumber"
 					secondaryDisplayProps={[
-						{
-							property: "isHighlighted",
-							label: "Highlighted"
-						},
-						{
-							property: "status",
-							label: "Status"
-						},
-						{
-							property: "urlName",
-							label: "URL Name"
-						}
 					]}
-					itemUrl="/manager/shapes"
-					loading={this.props.shapes.loading}
+					itemUrl="/manager/products"
+					loading={this.props.products.loading}
 					displayImage={true}
 					deleteItem={(id) => this.props.deleteItem(id)}
 				/>
@@ -89,12 +77,12 @@ function mapStateToProps(state) {
 	return {
 		user: state.app.user,
 		location: state.router.location,
-		collection: state.shapes.loadedCollection,
-		shapes: state.shapes,
+		collection: state.products.loadedCollection,
+		products: state.products,
 	};
 }
 
 export default connect(mapStateToProps, {
-	searchShapes, 
-	updateShapeCollectionSettings
+	searchProducts, 
+	updateProductCollectionSettings
 })(withRouter(Content));
