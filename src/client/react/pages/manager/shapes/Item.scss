@@ -9,6 +9,7 @@
     .item-details-container {
         flex-grow: 1;
         flex-shrink: 1;
+        overflow-y: scroll;
 
         .item-details {
             margin: 20px;

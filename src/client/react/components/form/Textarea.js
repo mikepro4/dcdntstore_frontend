@@ -1,11 +1,10 @@
 import React, { PropTypes } from "react";
 import classnames from "classnames";
 
-const Input = ({
+const Textarea = ({
 	input,
 	label,
 	placeholder,
-	icon,
 	large,
 	type,
 	meta: { touched, error }
@@ -25,18 +24,12 @@ const Input = ({
 
 	return (
 		<div className={containerClassName}>
-			{label ? (
-				<div className="input-group-left">
-					<div className="input-label">{label}</div>
-				</div>
-			) : (
-				""
-			)}
+			<div className="input-group-left">
+				{label ? <div className="input-label">{label}</div> : ""}
+			</div>
 
 			<div className="input-group-right">
-				{icon ? <span className={`bp3-icon bp3-icon-${icon}`} /> : ""}
-
-				<input
+				<textarea
 					{...input}
 					className={inputClassName}
 					placeholder={placeholder}
@@ -50,17 +43,9 @@ const Input = ({
 				) : (
 					""
 				)}
-
-				{touched && !error ? (
-					<div className="input-valid">
-						OK
-					</div>
-				) : (
-					""
-				)}
 			</div>
 		</div>
 	);
 };
 
-export default Input;
+export default Textarea;
