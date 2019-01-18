@@ -62,15 +62,16 @@ class ShapePage extends Component {
 						<ul className="route-actions">
 							<li>
 								<Button
-									icon="add"
+									icon="floppy-disk"
 									intent="primary"
-									text="Add new shape"
+									text="Save shape"
 								/>
 							</li>
 							<li>
 								<Button
-									icon="add"
-									text="Add new shape"
+									icon="trash"
+									intent="danger"
+									text="Delete shape"
 								/>
 							</li>
 						</ul>
@@ -78,7 +79,17 @@ class ShapePage extends Component {
 				</div>
 
 				<div className="route-content-container">
-                    {this.props.match.params.shapeId}
+					<div className="item-container">
+						<div className="item-details-container">
+							<div className="item-details">
+								details here
+							</div>
+						</div>
+
+						<div className="item-sidebar">
+							sidebar
+						</div>
+					</div>
 				</div>
             </div>
 		);

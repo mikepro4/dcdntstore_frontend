@@ -1,0 +1,29 @@
+.item-container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .item-details-container {
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        .item-details {
+            margin: 20px;
+            padding: 30px;
+            background: $white;
+            border-radius: 3px;
+            border: $lightBorder;
+        }
+    }
+
+    .item-sidebar {
+        flex-grow: 0;
+        flex-shrink: 0;
+        border-left: $lightBorder;
+        background: $white;
+        width: 400px;
+    }
+}
