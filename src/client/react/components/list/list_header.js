@@ -3,8 +3,20 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import commaNumber from 'comma-number'
+import {Button, MenuItem } from "@blueprintjs/core";
+import { Select } from "@blueprintjs/select";
 
 class ListHeader extends Component {
+	renderItem = (item, {handleClick, modifiers }) => {
+		return (
+			<MenuItem
+				active={modifiers.active}
+				key={item.value}
+				text={item.label}
+				onClick={handleClick}
+			/>
+		)
+	}
 	render() {
 		const format = commaNumber.bindWith(',', '.');
 		
@@ -20,7 +32,31 @@ class ListHeader extends Component {
                 </div>
 
                 <div className="list-header-right">
-                    right
+					<Select
+						items={[
+							{
+								value: -1,
+								label: "DESC"
+							},
+							{
+								value: 1,
+								label: "ASC"
+							}
+						]}
+						itemRenderer={this.renderItem}
+						filterable={false}
+						onItemSelect={(item) => this.props.updateShapeCollectionSettings(item, "order")}
+					>
+						Sort by: {this.props.shapes.collectionSettings.order.label}
+					</Select>
+					<Select
+						items={this.props.sortProperties}
+						itemRenderer={this.renderItem}
+						filterable={false}
+						onItemSelect={(item) => this.props.updateShapeCollectionSettings(item, "sortProperty")}
+					>
+						Sort by: {this.props.shapes.collectionSettings.sortProperty.label}
+					</Select>
                 </div>
             </div>
 		);
@@ -29,7 +65,8 @@ class ListHeader extends Component {
 
 function mapStateToProps(state) {
 	return {
-		location: state.router.location
+		location: state.router.location,
+		shapes: state.shapes
 	};
 }
 

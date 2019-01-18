@@ -1,17 +1,18 @@
 import * as _ from "lodash";
 
 import {
-  SEARCH_SHAPES,
-  SEARCH_SHAPES_SUCCESS,
-  CREATE_SHAPE,
-  CREATE_SHAPE_SUCCESS,
-  DELETE_SHAPE,
-  LOAD_SHAPE_SUCCESS,
-  CLEAR_CURRENT_SHAPE,
-  UPDATE_SHAPE,
-  UPDATE_SHAPE_SUCCESS,
-  UPDATE_SHAPE_FILTERS,
-	RESET_SHAPE_FILTERS
+  	SEARCH_SHAPES,
+  	SEARCH_SHAPES_SUCCESS,
+  	CREATE_SHAPE,
+  	CREATE_SHAPE_SUCCESS,
+  	DELETE_SHAPE,
+  	LOAD_SHAPE_SUCCESS,
+  	CLEAR_CURRENT_SHAPE,
+  	UPDATE_SHAPE,
+  	UPDATE_SHAPE_SUCCESS,
+  	UPDATE_SHAPE_FILTERS,
+	RESET_SHAPE_FILTERS,
+	UPDATE_SHAPE_COLLECTION_SETTINGS
 } from "../../actions/types";
 
 import { reset } from "redux-form";
@@ -59,10 +60,10 @@ export const searchShapes = (
 
 	const response = await api.post("/shapes/search", {
 			criteria,
-			sortProperty: object.collectionSettings.sortProperty,
+			sortProperty: object.collectionSettings.sortProperty.value,
 			offset: object.collectionSettings.offset,
 			limit: object.collectionSettings.limit,
-			order: object.collectionSettings.order 
+			order: object.collectionSettings.order.value 
 		}
 	);
 
@@ -183,6 +184,21 @@ export const resetShapeFilters = () => async (
 	});
 
 	dispatch(reset("shape_filters"));
+}
+
+// =============================================================================
+
+export const updateShapeCollectionSettings = (item, prop) => async (
+	dispatch
+) => {
+
+    dispatch({
+		type: UPDATE_SHAPE_COLLECTION_SETTINGS,
+		payload: item,
+		prop: prop
+	});
+
+	dispatch(searchShapes())
 }
 
 // =============================================================================

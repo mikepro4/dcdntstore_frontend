@@ -9,7 +9,8 @@ import {
     UPDATE_SHAPE,
     UPDATE_SHAPE_SUCCESS,
     UPDATE_SHAPE_FILTERS,
-    RESET_SHAPE_FILTERS
+    RESET_SHAPE_FILTERS,
+    UPDATE_SHAPE_COLLECTION_SETTINGS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -23,8 +24,14 @@ import {
     collectionFilters: {},
     collectionSettings: {
         results: "all",
-        order: -1,
-        sortProperty: "createdAt",
+        order: {
+            label: "DESC",
+            value: -1,
+        },
+        sortProperty: {
+            label: "Date Created",
+            value: "createdAt"
+        },
         scrollPosition: 0,
         offset: 0,
         limit: 0
@@ -92,6 +99,14 @@ import {
             return {
                 ...state,
                 collectionFilters: {}
+            }
+        case UPDATE_SHAPE_COLLECTION_SETTINGS:
+            let newColelctionSettings = _.merge({}, state.collectionSettings, {
+                [action.prop]: action.payload
+            })
+            return {
+                ...state,
+                collectionSettings: newColelctionSettings
             }
         default:
             return state;

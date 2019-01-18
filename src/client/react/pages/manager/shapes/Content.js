@@ -7,6 +7,7 @@ import ListResults from '../../../components/list/List_results'
 
 import {
 	searchShapes,
+	updateShapeCollectionSettings
 } from '../../../../redux/actions/manager/shapeActions'
 
 class Content extends Component {
@@ -49,9 +50,25 @@ class Content extends Component {
 			<div className="route-content">
 				<ListHeader
 					count={this.props.shapes.loadedCollectionCount}
-					changeCollectionDisplayLimit={() => this.changeCollectionDisplayLimit()}
-					changeCollectionSortProperty={() => this.changeCollectionSortProperty()}
-					changeCollectionOrder={() => this.changeCollectionOrder() }
+					updateShapeCollectionSettings={(item, prop) => this.props.updateShapeCollectionSettings(item, prop)}
+					sortProperties={[
+						{
+							value: "createdAt",
+							label: "Date Created"
+						},
+						{
+							value: "title",
+							label: "Title"
+						},
+						{
+							value: "description",
+							label: "Description"
+						},
+						{
+							value: "catalogNumber",
+							label: "Catalog Number"
+						}
+					]}
 				/>
 				<ListResults
 					collection={this.props.shapes.loadedCollection}
@@ -91,4 +108,7 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, {searchShapes})(withRouter(Content));
+export default connect(mapStateToProps, {
+	searchShapes, 
+	updateShapeCollectionSettings
+})(withRouter(Content));
