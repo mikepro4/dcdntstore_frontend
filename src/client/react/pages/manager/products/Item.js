@@ -205,16 +205,20 @@ class ProductPage extends Component {
 						</div>
 
 						<div className="item-sidebar">
+							
 							{this.state.loadedShape ? (
-								<ShapeLinker
-									itemLink={`/manager/shapes/${this.state.loadedShape.value}`}
-									itemLabel={this.state.loadedShape.label}
-									itemAvatar={this.state.fullShape.metadata.images.small}
-									enableReinitialize="true"
-									initialValues={{itemToLink: this.state.loadedShape}}
-									loadOptions={(input, callback) => this.searchShapes(input, callback)}
-									onSubmit={(values) => this.updateShapeLink(values)}
-								/>
+								<div className="linker-section">
+									<div className="linker-section-title">Shape linked to product:</div>
+									<ShapeLinker
+										itemLink={`/manager/shapes/${this.state.loadedShape.value}`}
+										itemLabel={this.state.loadedShape.label}
+										itemAvatar={this.state.fullShape.metadata.images.small}
+										enableReinitialize="true"
+										initialValues={{itemToLink: this.state.loadedShape}}
+										loadOptions={(input, callback) => this.searchShapes(input, callback)}
+										onSubmit={(values) => this.updateShapeLink(values)}
+									/>
+								</div>
 							) : ""}
 							
 						</div>
