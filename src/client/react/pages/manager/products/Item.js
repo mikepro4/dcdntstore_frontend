@@ -212,7 +212,7 @@ class ProductPage extends Component {
 									<ShapeLinker
 										itemLink={`/manager/shapes/${this.state.loadedShape.value}`}
 										itemLabel={this.state.loadedShape.label}
-										itemAvatar={this.state.fullShape.metadata.images.small}
+										itemAvatar={this.state.fullShape && this.state.fullShape.metadata ? this.state.fullShape.metadata.images.small : ""}
 										enableReinitialize="true"
 										initialValues={{itemToLink: this.state.loadedShape}}
 										loadOptions={(input, callback) => this.searchShapes(input, callback)}
