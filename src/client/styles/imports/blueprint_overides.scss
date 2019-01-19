@@ -167,3 +167,7 @@
 	border-radius: 5px;
 	padding-bottom: 30px;
 }
+
+.bp3-button.bp3-intent-primary:disabled, .bp3-button.bp3-intent-primary.bp3-disabled {
+    background-color: rgba($cobalt4, 0.3)
+}

@@ -16,7 +16,8 @@ import {
 } from '../../../../redux/actions/manager/productActions'
 
 import {
-	loadShape
+	loadShape,
+	searchShapesManual
 } from '../../../../redux/actions/manager/shapeActions'
 
 import {
@@ -28,7 +29,7 @@ import {
 	hideConfirmDelete
 } from '../../../../redux/actions/modalActions'
 
-import ShapeLinker from '../../../components/linker/ShapeLinker'
+import ShapeLinker from '../../../components/linker/Linker'
 
 import ItemDetails from './ItemDetails'
 
@@ -99,11 +100,15 @@ class ProductPage extends Component {
 	updateShapeLink = (values) => {
 
 		let newProductMetadata = _.assign({}, this.props.current.metadata, {
-			shapeId: values.shape.value
+			shapeId: values.itemToLink.value
 		})
 
-		this.props.updateProduct(this.props.current._id, newProductMetadata, () =>{
-			console.log("linked product to artwork")
+		this.props.updateProduct(this.props.current._id, newProductMetadata, () => {
+			this.refs.toaster.show({
+				message: "Shape successully linked",
+				intent: Intent.PRIMARY
+			});
+			this.loadLinkedShape()
 		} )
 	}
 
@@ -115,9 +120,9 @@ class ProductPage extends Component {
 					loadedShape: {
 						value: shape._id,
 						label: shape.metadata.title
-					}
+					},
+					fullShape: shape
 				}, () => {
-					console.log(this.state.loadedShape)
 				})
 
 			})
@@ -131,6 +136,22 @@ class ProductPage extends Component {
 		}
 	}
 
+	searchShapes = (input, callback) => {
+        this.props.searchShapesManual(
+            { title: input },
+            "createdAt",
+            0,
+            20,
+            data => {
+                let values = data.all.map(shape => ({
+                    value: shape._id,
+                    label: shape.metadata.title
+                }))
+                callback(values);
+            }
+        );
+    };
+
 	render() {
 		return (
             <div className="route-container route-details">
@@ -138,15 +159,17 @@ class ProductPage extends Component {
                 <div className="route-header">
 					<div className="route-header-left">
                         <div className="route-header-back">
-                            <Link to="/manager/products">
-                                <Button
-                                    icon="arrow-left"
-                                    minimal="true"
-                                    large="true"
-									text="Back"
-									onClick={() => this.props.resetProductFilters()}
-                                />
-                            </Link>
+							<Button
+								icon="arrow-left"
+								minimal="true"
+								large="true"
+								text="Back"
+								onClick={() => {
+										this.props.resetProductFilters()
+										this.props.history.goBack()
+									}
+								}
+							/>
                         </div>
 						<div className="route-title">Product Details</div>
 					</div>
@@ -184,8 +207,12 @@ class ProductPage extends Component {
 						<div className="item-sidebar">
 							{this.state.loadedShape ? (
 								<ShapeLinker
+									itemLink={`/manager/shapes/${this.state.loadedShape.value}`}
+									itemLabel={this.state.loadedShape.label}
+									itemAvatar={this.state.fullShape.metadata.images.small}
 									enableReinitialize="true"
-									initialValues={{shape: this.state.loadedShape}}
+									initialValues={{itemToLink: this.state.loadedShape}}
+									loadOptions={(input, callback) => this.searchShapes(input, callback)}
 									onSubmit={(values) => this.updateShapeLink(values)}
 								/>
 							) : ""}
@@ -219,6 +246,7 @@ export default {
 		showConfirmDelete,
 		hideConfirmDelete,
 		resetProductFilters,
-		loadShape
+		loadShape,
+		searchShapesManual
 	})(ProductPage)
 }

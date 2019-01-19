@@ -5,48 +5,46 @@ import { Form } from "redux-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Intent } from "@blueprintjs/core";
+import uuid from 'uuid'
 
 import ReactSelect from "../form/ReactSelectAsync";
 
-import { searchShapesManual } from '../../../redux/actions/manager/shapeActions'
-
 class ShapesLinkerForm extends Component {
-    searchShapes = (input, callback) => {
-        this.props.searchShapesManual(
-            { title: input },
-            "createdAt",
-            0,
-            20,
-            data => {
-                let values = data.all.map(shape => ({
-                    value: shape._id,
-                    label: shape.metadata.title
-                }))
-                callback(values);
-            }
-        );
-    };
-
 
 	render() {
         const { handleSubmit } = this.props;
-        console.log(this.props)
 
 		return (
             <div className="linker-container">
+
+                <div className="linked-item-deatils">
+                    <Link 
+                        to={this.props.itemLink}
+                    >
+                        <div className="linked-item-avatar">
+                            <img src={this.props.itemAvatar}/>
+                        </div>
+
+                        <div className="linked-item-label">
+                            {this.props.itemLabel}
+                        </div>
+                    </Link>
+                </div>
                 <Form onSubmit={handleSubmit} autoComplete="off" >
 
                     <Field
-                        name="shape"
+                        name="itemToLink"
                         component={ReactSelect}
-                        loadOptions={(input, callback) => this.searchShapes(input, callback)}
-                        placeholder="Search shapes..."
-                        ref="shape"
+                        loadOptions={(input, callback) => this.props.loadOptions(input, callback)}
+                        placeholder="Search..."
+                        label="Select item to link:"
+                        ref="itemToLink"
                     />
 
 		            <Button
                         intent={Intent.PRIMARY}
                         loading={this.props.loading}
+                        disabled={this.props.pristine}
                         type="submit"
                         text="Update link"
                     />
@@ -62,13 +60,12 @@ const validate = values => {
 };
 
 ShapesLinkerForm = reduxForm({
-	form: "linker",
+	form: uuid(),
     validate,
 })(ShapesLinkerForm);
 
 const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, {
-    searchShapesManual
 })(ShapesLinkerForm);
 

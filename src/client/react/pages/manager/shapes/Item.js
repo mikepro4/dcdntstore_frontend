@@ -92,15 +92,17 @@ class ShapePage extends Component {
                 <div className="route-header">
 					<div className="route-header-left">
                         <div className="route-header-back">
-                            <Link to="/manager/shapes">
-                                <Button
-                                    icon="arrow-left"
-                                    minimal="true"
-                                    large="true"
-									text="Back"
-									onClick={() => this.props.resetShapeFilters()}
-                                />
-                            </Link>
+							<Button
+								icon="arrow-left"
+								minimal="true"
+								large="true"
+								text="Back"
+								onClick={() => {
+										this.props.resetShapeFilters()
+										this.props.history.goBack()
+									}
+								}
+							/>
                         </div>
 						<div className="route-title">Shape Details</div>
 					</div>

@@ -1,3 +1,40 @@
 .linker-container {
-    
+    padding: 15px;
+    border-bottom: $lightBorder;
+
+    .linked-item-deatils {
+        a {
+            display: flex;
+            color: $black;
+
+            .linked-item-avatar {
+                width: 100px;
+                height: 100px;
+                background: $light-gray4;
+
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+
+            .linked-item-label {
+                margin: 0 0 0 10px;
+                font-size: 24px;
+                font-family: 600;
+            }
+
+            &:hover {
+                color: $cobalt4;
+            }
+        }
+    }
+
+    .input-group {
+        flex-direction: column;
+
+        .input-label {
+            margin: 10px 0 5px 0
+        }
+    }
 }
