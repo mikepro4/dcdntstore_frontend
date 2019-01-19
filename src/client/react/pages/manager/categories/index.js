@@ -4,7 +4,8 @@ import { Helmet } from "react-helmet";
 import { Icon, Button, Position, Toaster, Classes, Intent } from "@blueprintjs/core";
 
 import {
-	createCategory
+	createCategory,
+	searchCategories
 } from '../../../../redux/actions/manager/categoryActions'
 
 import SidebarLeft from './SidebarLeft'
@@ -14,6 +15,26 @@ import Content from './Content'
 class CategoriesPage extends Component {
 	state = {
 	};
+
+	componentDidMount() {
+		if(this.props.user) {
+		  this.loadCollection()
+		}
+	}
+
+	componentDidUpdate(prevprops) {
+		if(prevprops.user !== this.props.user) {
+			this.loadCollection()
+		}
+
+		if(prevprops.categories.updateCollection !== this.props.categories.updateCollection) {
+			this.loadCollection()
+		}
+	}
+
+	loadCollection = () => {
+		this.props.searchCategories();
+	}
 
 	createCategory = () => {
 		this.props.createCategory({
@@ -70,13 +91,16 @@ class CategoriesPage extends Component {
 	}
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
 	return {
+		user: state.app.user,
+		categories: state.categories
 	};
 }
 
 export default {
 	component: connect(mapStateToProps, {
-		createCategory
+		createCategory,
+		searchCategories
 	})(CategoriesPage)
 }

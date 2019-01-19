@@ -8,7 +8,17 @@ import {
     CLEAR_CURRENT_CATEGORY,
     UPDATE_CATEGORY,
     UPDATE_CATEGORY_SUCCESS,
-    UPDATE_CATEGORY_COLLECTION_SETTINGS
+    UPDATE_CATEGORY_COLLECTION_SETTINGS,
+    UPDATE_CATEGORIES_TREE,
+    UPDATE_CATEGORIES_TREE_SELECTION,
+    ADD_PARENT_CATEGORY,
+	ADD_PARENT_CATEGORY_SUCCESS,
+	ADD_CHILD_CATEGORY,
+    ADD_CHILD_CATEGORY_SUCCESS,
+    REMOVE_PARENT_CATEGORY,
+	REMOVE_PARENT_CATEGORY_SUCCESS,
+	REMOVE_CHILD_CATEGORY,
+	REMOVE_CHILD_CATEGORY_SUCCESS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -30,7 +40,10 @@ import {
         },
         offset: 0,
         limit: 0
-    }
+    },
+    tree: [],
+	expandedNodes: [],
+	selectedNodes: [],
   };
   
   export const categoriesReducer = (state = initialState, action) => {
@@ -54,6 +67,61 @@ import {
                 loading: true,
             }
         case CREATE_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                updateCollection: true
+            }
+        case ADD_PARENT_CATEGORY:
+            return {
+                ...state,
+                loading: true,
+            }
+        case ADD_PARENT_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                updateCollection: true
+            }
+        case ADD_PARENT_CATEGORY:
+            return {
+                ...state,
+                loading: true,
+            }
+        case ADD_PARENT_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                updateCollection: true
+            }
+        case ADD_CHILD_CATEGORY:
+            return {
+                ...state,
+                loading: true,
+            }
+        case ADD_CHILD_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                updateCollection: true
+            }
+        case REMOVE_PARENT_CATEGORY:
+            return {
+                ...state,
+                loading: true,
+            }
+        case REMOVE_PARENT_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                updateCollection: true
+            }
+        case REMOVE_CHILD_CATEGORY:
+            return {
+                ...state,
+                loading: true,
+            }
+        case REMOVE_CHILD_CATEGORY_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -93,6 +161,15 @@ import {
                 ...state,
                 collectionSettings: newColelctionSettings
             }
+        case UPDATE_CATEGORIES_TREE:
+			return _.assign({}, state, {
+				tree: action.payload
+			});
+		case UPDATE_CATEGORIES_TREE_SELECTION:
+			return _.assign({}, state, {
+				expandedNodes: action.expanded,
+				selectedNodes: action.selected
+			});
         default:
             return state;
         }
