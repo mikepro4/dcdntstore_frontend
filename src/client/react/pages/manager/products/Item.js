@@ -43,8 +43,10 @@ class ProductPage extends Component {
 	};
 
 	componentDidMount() {
-		this.props.loadProduct(this.props.match.params.productId)
-		this.loadLinkedShape()
+		this.props.loadProduct(this.props.match.params.productId, () => {
+			console.log('load')
+			this.loadLinkedShape()
+		})
 	}
 
 	componentWillUnmount() {
@@ -118,6 +120,13 @@ class ProductPage extends Component {
 					console.log(this.state.loadedShape)
 				})
 
+			})
+		} else {
+			this.setState({
+				loadedShape: {
+					value: '',
+					label: ''
+				}
 			})
 		}
 	}

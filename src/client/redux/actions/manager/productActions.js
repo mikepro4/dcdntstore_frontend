@@ -140,12 +140,14 @@ export const loadProduct = (productId, success) => async (
         dispatch({
             type: LOAD_PRODUCT_SUCCESS,
             payload: response.data
-        });
+		});
+
+		if (success) {
+			success();
+		}
     }
 
-	if (success) {
-		success(response.data);
-	}
+	
 };
 
 // =============================================================================

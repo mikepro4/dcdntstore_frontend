@@ -58,7 +58,6 @@ class ShapesLinkerForm extends Component {
 
 const validate = values => {
     const errors = {};
-
 	return errors;
 };
 
