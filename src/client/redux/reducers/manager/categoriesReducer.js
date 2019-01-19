@@ -1,16 +1,14 @@
 import {
-    SEARCH_SHAPES,
-    SEARCH_SHAPES_SUCCESS,
-    CREATE_SHAPE,
-    CREATE_SHAPE_SUCCESS,
-    DELETE_SHAPE,
-    LOAD_SHAPE_SUCCESS,
-    CLEAR_CURRENT_SHAPE,
-    UPDATE_SHAPE,
-    UPDATE_SHAPE_SUCCESS,
-    UPDATE_SHAPE_FILTERS,
-    RESET_SHAPE_FILTERS,
-    UPDATE_SHAPE_COLLECTION_SETTINGS
+    SEARCH_CATEGORIES,
+    SEARCH_CATEGORIES_SUCCESS,
+    CREATE_CATEGORY,
+    CREATE_CATEGORY_SUCCESS,
+    DELETE_CATEGORY,
+    LOAD_CATEGORY_SUCCESS,
+    CLEAR_CURRENT_CATEGORY,
+    UPDATE_CATEGORY,
+    UPDATE_CATEGORY_SUCCESS,
+    UPDATE_CATEGORY_COLLECTION_SETTINGS
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -21,7 +19,6 @@ import {
     loadedCollection: [],
     loadedCollectionCount: null,
     updateCollection: false,
-    collectionFilters: {},
     collectionSettings: {
         order: {
             label: "DESC",
@@ -36,69 +33,59 @@ import {
     }
   };
   
-  export const shapesReducer = (state = initialState, action) => {
+  export const categoriesReducer = (state = initialState, action) => {
       switch (action.type) {
-        case SEARCH_SHAPES:
+        case SEARCH_CATEGORIES:
             return {
                 ...state,
                 loading: true,
                 updateCollection: false
             }
-        case SEARCH_SHAPES_SUCCESS:
+        case SEARCH_CATEGORIES_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 loadedCollection: action.payload.all,
                 loadedCollectionCount: action.payload.count
             }
-        case CREATE_SHAPE:
+        case CREATE_CATEGORY:
             return {
                 ...state,
                 loading: true,
             }
-        case CREATE_SHAPE_SUCCESS:
+        case CREATE_CATEGORY_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 updateCollection: true
             }
-        case DELETE_SHAPE:
+        case DELETE_CATEGORY:
             return {
                 ...state,
                 updateCollection: true
             }
-        case LOAD_SHAPE_SUCCESS:
+        case LOAD_CATEGORY_SUCCESS:
             return {
                 ...state,
                 current: action.payload
             }
-        case CLEAR_CURRENT_SHAPE:
+        case CLEAR_CURRENT_CATEGORY:
             return {
                 ...state,
                 current: {}
             };
-        case UPDATE_SHAPE:
+        case UPDATE_CATEGORY:
             return {
                 ...state,
                 loading: true,
             }
-        case UPDATE_SHAPE_SUCCESS:
+        case UPDATE_CATEGORY_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 current: action.payload
             }
-        case UPDATE_SHAPE_FILTERS:
-            return {
-                ...state,
-                collectionFilters: action.payload
-            }
-        case RESET_SHAPE_FILTERS:
-            return {
-                ...state,
-                collectionFilters: {}
-            }
-        case UPDATE_SHAPE_COLLECTION_SETTINGS:
+        case UPDATE_CATEGORY_COLLECTION_SETTINGS:
             let newColelctionSettings = _.merge({}, state.collectionSettings, {
                 [action.prop]: action.payload
             })

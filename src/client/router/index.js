@@ -1,9 +1,12 @@
 import App from "../App";
 import Home from "../react/pages/home";
 import Manager from "../react/pages/manager";
+
 import Shapes from "../react/pages/manager/shapes";
 import Products from "../react/pages/manager/products";
 import Users from "../react/pages/manager/users";
+import Categories from "../react/pages/manager/categories";
+
 import Shape from "../react/pages/manager/shapes/Item";
 import Product from "../react/pages/manager/products/Item";
 
@@ -65,7 +68,15 @@ export default [
 						params: {
 							name: "manager_users"
 						}
-					}
+					},
+					{
+						...Categories,
+						path: "/manager/categories",
+						exact: true,
+						params: {
+							name: "manager_categories"
+						}
+					},
 				]
 			}
 		]

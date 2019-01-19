@@ -23,7 +23,6 @@ import {
     updateCollection: false,
     collectionFilters: {},
     collectionSettings: {
-        results: "all",
         order: {
             label: "DESC",
             value: -1,
@@ -32,7 +31,6 @@ import {
             label: "Date Created",
             value: "createdAt"
         },
-        scrollPosition: 0,
         offset: 0,
         limit: 0
     }

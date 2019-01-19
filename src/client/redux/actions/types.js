@@ -54,6 +54,28 @@ export const UPDATE_PRODUCT_COLLECTION_SETTINGS = "app/UPDATE_PRODUCT_COLLECTION
 
 // =============================================================================
 
+// Category
+
+export const CREATE_CATEGORY = "app/CREATE_CATEGORY";
+export const CREATE_CATEGORY_SUCCESS = "app/CREATE_CATEGORY_SUCCESS";
+export const DELETE_CATEGORY = "app/DELETE_CATEGORY";
+export const DELETE_CATEGORY_SUCCESS = "app/DELETE_CATEGORY_SUCCESS";
+
+export const SEARCH_CATEGORIES = "app/SEARCH_CATEGORIES";
+export const SEARCH_CATEGORIES_SUCCESS = "app/SEARCH_CATEGORIES_SUCCESS";
+
+export const LOAD_CATEGORY = "app/LOAD_CATEGORY";
+export const LOAD_CATEGORY_SUCCESS = "app/LOAD_CATEGORY_SUCCESS";
+
+export const UPDATE_CATEGORY = "app/UPDATE_CATEGORY";
+export const UPDATE_CATEGORY_SUCCESS = "app/UPDATE_CATEGORY_SUCCESS";
+
+export const CLEAR_CURRENT_CATEGORY = "app/CLEAR_CURRENT_CATEGORY";
+
+export const UPDATE_CATEGORY_COLLECTION_SETTINGS = "app/UPDATE_CATEGORY_COLLECTION_SETTINGS"
+
+// =============================================================================
+
 //Modals
 
 export const SHOW_MODAL_CONFIRM_DELETE = "app/SHOW_MODAL_CONFIRM_DELETE";
