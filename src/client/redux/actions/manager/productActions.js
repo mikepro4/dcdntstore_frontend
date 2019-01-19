@@ -77,6 +77,31 @@ export const searchProducts = (
 	}
 };
 
+export const searchProductsManual = (
+	criteria,
+	sortProperty,
+	offset = 0,
+	limit = 0,
+	success
+) => async (dispatch, getState, api) => {
+
+	let order = -1 
+
+	const response = await api.post("/products/search", {
+			criteria,
+			sortProperty,
+			offset,
+			limit,
+			order
+		}
+	);
+
+	if (success) {
+		success(response.data);
+	}
+};
+// =============================================================================
+
 // =============================================================================
 
 export const deleteProduct = (productId, success) => async (

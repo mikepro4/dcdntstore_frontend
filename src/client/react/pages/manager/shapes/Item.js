@@ -15,6 +15,10 @@ import {
 } from '../../../../redux/actions/manager/shapeActions'
 
 import {
+	searchProductsManual
+} from '../../../../redux/actions/manager/productActions'
+
+import {
 	submitForm
 } from '../../../../redux/actions/formActions'
 
@@ -32,10 +36,12 @@ class ShapePage extends Component {
 	}
 
 	state = {
+		linkedProducts: ""
 	};
 
 	componentDidMount() {
 		this.props.loadShape(this.props.match.params.shapeId)
+		this.searchProducts()
 	}
 
 	componentWillUnmount() {
@@ -45,6 +51,7 @@ class ShapePage extends Component {
 	componentDidUpdate(prevprops) {
 		if(prevprops.match.params.shapeId !== this.props.match.params.shapeId) {
 			this.props.loadShape(this.props.match.params.shapeId)
+			this.searchProducts()
 		}
 	}
 
@@ -84,6 +91,20 @@ class ShapePage extends Component {
 			<meta property="og:title" content="Homepage" />
 		</Helmet>
 	)
+
+	searchProducts = () => {
+        this.props.searchProductsManual(
+            { shapeId: this.props.match.params.shapeId },
+            "createdAt",
+            0,
+            2000,
+            data => {
+				this.setState({
+					linkedProducts: data.all
+				})
+            }
+        );
+    };
 
 	render() {
 		return (
@@ -138,7 +159,21 @@ class ShapePage extends Component {
 						</div>
 
 						<div className="item-sidebar">
-							sidebar
+							{this.state.linkedProducts && this.state.linkedProducts.map(product => {
+								return (
+									<div className="linked-product-container">
+										<Link 
+											to={`/manager/products/${product._id}`}
+											className="linked-product"
+										>
+											<div className="linked-product-image">
+												<img src={product.metadata.images.small}/>
+											</div>
+											{product.metadata.title}
+										</Link>
+									</div>
+								)
+							})}
 						</div>
 					</div>
 				</div>
@@ -167,6 +202,7 @@ export default {
 		submitForm,
 		showConfirmDelete,
 		hideConfirmDelete,
-		resetShapeFilters
+		resetShapeFilters,
+		searchProductsManual
 	})(ShapePage)
 }
