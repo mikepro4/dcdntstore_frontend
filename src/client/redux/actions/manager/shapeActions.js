@@ -79,6 +79,31 @@ export const searchShapes = (
 
 // =============================================================================
 
+export const searchShapesManual = (
+	criteria,
+	sortProperty,
+	offset = 0,
+	limit = 0,
+	success
+) => async (dispatch, getState, api) => {
+
+	let order = -1 
+
+	const response = await api.post("/shapes/search", {
+			criteria,
+			sortProperty,
+			offset,
+			limit,
+			order
+		}
+	);
+
+	if (success) {
+		success(response.data);
+	}
+};
+// =============================================================================
+
 export const deleteShape = (shapeId, success) => async (
 	dispatch,
 	getState,

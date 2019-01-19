@@ -9,6 +9,11 @@ import { Button } from "@blueprintjs/core";
 import Input from "../../../components/form/Input";
 import Select from "../../../components/form/Select";
 import Textarea from "../../../components/form/Textarea";
+import ReactSelect from "../../../components/form/ReactSelectAsync";
+
+import {
+	searchShapesManual
+} from '../../../../redux/actions/manager/shapeActions'
 
 class ItemDetailsForm extends Component {
 	render() {
@@ -30,14 +35,6 @@ class ItemDetailsForm extends Component {
                         component={Textarea}
                         label="Description"
                         placeholder="Type product description..."
-                        ref="description"
-                    />
-
-                    <Field
-                        name="catalogNumber"
-                        component={Input}
-                        label="Catalog Number"
-                        placeholder="Type catalog number..."
                         ref="description"
                     />
 
@@ -67,9 +64,9 @@ ItemDetailsForm = reduxForm({
 	validate,
 })(ItemDetailsForm);
 
-ItemDetailsForm = connect(state => {
-	return {
-	};
+const mapStateToProps = state => ({});
+
+export default connect(mapStateToProps, {
+	searchShapesManual
 })(ItemDetailsForm);
 
-export default ItemDetailsForm;

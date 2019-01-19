@@ -38,7 +38,7 @@ class ItemDetails extends Component {
 						<div className="item-image item-image-large">
 							<ImageUploader 
 								onSuccess={(url) => this.updateImage(url, "large")}
-								preset="product_large"
+								preset="shape_large"
 								canUpload="true"
 								imageUrl={this.props.product.metadata && this.props.product.metadata.images.large}
 							/>
@@ -49,7 +49,7 @@ class ItemDetails extends Component {
 						<div className="item-image item-image-medium">
 							<ImageUploader 
 								onSuccess={(url) => this.updateImage(url, "medium")}
-								preset="product_medium"
+								preset="shape_medium"
 								canUpload="true"
 								imageUrl={this.props.product.metadata && this.props.product.metadata.images.medium}
 							/>
@@ -58,7 +58,7 @@ class ItemDetails extends Component {
 						<div className="item-image item-image-small">
 							<ImageUploader 
 								onSuccess={(url) => this.updateImage(url, "small")}
-								preset="product_small"
+								preset="shape_small"
 								canUpload="true"
 								imageUrl={this.props.product.metadata && this.props.product.metadata .images.small}
 							/>

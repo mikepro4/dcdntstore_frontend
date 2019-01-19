@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import { Icon, Button, Position, Toaster, Classes, Intent  } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
+import * as _ from 'lodash'
 
 import ConfirmDelete from "../ConfirmDelete";
 
@@ -11,8 +12,12 @@ import {
 	deleteProduct,
 	clearCurrentProduct,
 	updateProduct,
-	resetProductFilters
+	resetProductFilters,
 } from '../../../../redux/actions/manager/productActions'
+
+import {
+	loadShape
+} from '../../../../redux/actions/manager/shapeActions'
 
 import {
 	submitForm
@@ -23,6 +28,8 @@ import {
 	hideConfirmDelete
 } from '../../../../redux/actions/modalActions'
 
+import ShapeLinker from '../../../components/linker/ShapeLinker'
+
 import ItemDetails from './ItemDetails'
 
 
@@ -32,10 +39,12 @@ class ProductPage extends Component {
 	}
 
 	state = {
+	
 	};
 
 	componentDidMount() {
 		this.props.loadProduct(this.props.match.params.productId)
+		this.loadLinkedShape()
 	}
 
 	componentWillUnmount() {
@@ -84,6 +93,34 @@ class ProductPage extends Component {
 			<meta property="og:title" content="Homepage" />
 		</Helmet>
 	)
+
+	updateShapeLink = (values) => {
+
+		let newProductMetadata = _.assign({}, this.props.current.metadata, {
+			shapeId: values.shape.value
+		})
+
+		this.props.updateProduct(this.props.current._id, newProductMetadata, () =>{
+			console.log("linked product to artwork")
+		} )
+	}
+
+	loadLinkedShape = () => {
+		let shapeId = this.props.current.metadata.shapeId
+		if(shapeId) {
+			this.props.loadShape(shapeId, (shape) => {
+				this.setState({
+					loadedShape: {
+						value: shape._id,
+						label: shape.metadata.title
+					}
+				}, () => {
+					console.log(this.state.loadedShape)
+				})
+
+			})
+		}
+	}
 
 	render() {
 		return (
@@ -136,7 +173,14 @@ class ProductPage extends Component {
 						</div>
 
 						<div className="item-sidebar">
-							sidebar
+							{this.state.loadedShape ? (
+								<ShapeLinker
+									enableReinitialize="true"
+									initialValues={{shape: this.state.loadedShape}}
+									onSubmit={(values) => this.updateShapeLink(values)}
+								/>
+							) : ""}
+							
 						</div>
 					</div>
 				</div>
@@ -165,6 +209,7 @@ export default {
 		submitForm,
 		showConfirmDelete,
 		hideConfirmDelete,
-		resetProductFilters
+		resetProductFilters,
+		loadShape
 	})(ProductPage)
 }
