@@ -13,26 +13,21 @@ import {
 	UPDATE_CATEGORY_COLLECTION_SETTINGS,
 	UPDATE_CATEGORIES_TREE,
 	UPDATE_CATEGORIES_TREE_SELECTION,
-	ADD_PARENT_CATEGORY,
-	ADD_PARENT_CATEGORY_SUCCESS,
-	ADD_CHILD_CATEGORY,
-	ADD_CHILD_CATEGORY_SUCCESS,
-	REMOVE_PARENT_CATEGORY,
-	REMOVE_PARENT_CATEGORY_SUCCESS,
-	REMOVE_CHILD_CATEGORY,
-	REMOVE_CHILD_CATEGORY_SUCCESS
+	LINK_CATEGORIES,
+	LINK_CATEGORIES_SUCCESS,
+	UNLINK_CATEGORIES,
+	UNLINK_CATEGORIES_SUCCESS,
 } from "../../actions/types";
 
 // =============================================================================
 
-export const createCategory = (metadata, success) => async (dispatch, getState, api) => {
+export const createCategory = (success) => async (dispatch, getState, api) => {
 
     dispatch({
         type: CREATE_CATEGORY
     });
 
 	const res = await api.post("/categories/create", {
-        metadata: metadata
     });
 
 	dispatch({
@@ -47,19 +42,19 @@ export const createCategory = (metadata, success) => async (dispatch, getState, 
 
 // =============================================================================
 
-export const addParentCategory = (sourceId, targetId, success) => async (dispatch, getState, api) => {
+export const linkCategories = (sourceId, targetId, success) => async (dispatch, getState, api) => {
 
     dispatch({
-        type: ADD_PARENT_CATEGORY
+        type: LINK_CATEGORIES
     });
 
-	const res = await api.post("/categories/add_parent", {
+	const res = await api.post("/categories/link", {
 		sourceId: sourceId,
 		targetId: targetId
     });
 
 	dispatch({
-		type: ADD_PARENT_CATEGORY_SUCCESS,
+		type: LINK_CATEGORIES_SUCCESS,
 		payload: res.data
 	})
 
@@ -70,65 +65,19 @@ export const addParentCategory = (sourceId, targetId, success) => async (dispatc
 
 // =============================================================================
 
-export const addChildCategory = (sourceId, targetId, success) => async (dispatch, getState, api) => {
+export const unlinkCategories = (sourceId, targetId, success) => async (dispatch, getState, api) => {
 
     dispatch({
-        type: ADD_CHILD_CATEGORY
+        type: UNLINK_CATEGORIES
     });
 
-	const res = await api.post("/categories/add_child", {
+	const res = await api.post("/categories/unlink", {
 		sourceId: sourceId,
 		targetId: targetId
     });
 
 	dispatch({
-		type: ADD_CHILD_CATEGORY_SUCCESS,
-		payload: res.data
-	})
-
-  if (success) {
-		success(res.data);
-	}
-}
-
-// =============================================================================
-
-export const removeParentCategory = (sourceId, targetId, success) => async (dispatch, getState, api) => {
-
-    dispatch({
-        type: REMOVE_PARENT_CATEGORY
-    });
-
-	const res = await api.post("/categories/remove_parent", {
-		sourceId: sourceId,
-		targetId: targetId
-    });
-
-	dispatch({
-		type: REMOVE_PARENT_CATEGORY_SUCCESS,
-		payload: res.data
-	})
-
-  if (success) {
-		success(res.data);
-	}
-}
-
-// =============================================================================
-
-export const removeChildCategory = (sourceId, targetId, success) => async (dispatch, getState, api) => {
-
-    dispatch({
-        type: REMOVE_CHILD_CATEGORY
-    });
-
-	const res = await api.post("/categories/remove_child", {
-		sourceId: sourceId,
-		targetId: targetId
-    });
-
-	dispatch({
-		type: REMOVE_CHILD_CATEGORY_SUCCESS,
+		type: UNLINK_CATEGORIES_SUCCESS,
 		payload: res.data
 	})
 
@@ -320,7 +269,7 @@ export const updateCategoriesTreeSelection = (expanded, selected) => async dispa
 
 // =============================================================================
 
-export const getCategory = (categoryId) => async (
+export const getCategory = (categoryId) => (
 	dispatch,
 	getState,
 	api

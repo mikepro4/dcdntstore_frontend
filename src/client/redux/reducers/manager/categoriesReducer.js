@@ -11,14 +11,10 @@ import {
     UPDATE_CATEGORY_COLLECTION_SETTINGS,
     UPDATE_CATEGORIES_TREE,
     UPDATE_CATEGORIES_TREE_SELECTION,
-    ADD_PARENT_CATEGORY,
-	ADD_PARENT_CATEGORY_SUCCESS,
-	ADD_CHILD_CATEGORY,
-    ADD_CHILD_CATEGORY_SUCCESS,
-    REMOVE_PARENT_CATEGORY,
-	REMOVE_PARENT_CATEGORY_SUCCESS,
-	REMOVE_CHILD_CATEGORY,
-	REMOVE_CHILD_CATEGORY_SUCCESS
+    LINK_CATEGORIES,
+	LINK_CATEGORIES_SUCCESS,
+	UNLINK_CATEGORIES,
+	UNLINK_CATEGORIES_SUCCESS,
   } from "../../actions/types";
 
   import * as _ from "lodash";
@@ -72,56 +68,23 @@ import {
                 loading: false,
                 updateCollection: true
             }
-        case ADD_PARENT_CATEGORY:
+        case LINK_CATEGORIES:
             return {
                 ...state,
                 loading: true,
             }
-        case ADD_PARENT_CATEGORY_SUCCESS:
+        case LINK_CATEGORIES_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 updateCollection: true
             }
-        case ADD_PARENT_CATEGORY:
+        case UNLINK_CATEGORIES:
             return {
                 ...state,
                 loading: true,
             }
-        case ADD_PARENT_CATEGORY_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                updateCollection: true
-            }
-        case ADD_CHILD_CATEGORY:
-            return {
-                ...state,
-                loading: true,
-            }
-        case ADD_CHILD_CATEGORY_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                updateCollection: true
-            }
-        case REMOVE_PARENT_CATEGORY:
-            return {
-                ...state,
-                loading: true,
-            }
-        case REMOVE_PARENT_CATEGORY_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                updateCollection: true
-            }
-        case REMOVE_CHILD_CATEGORY:
-            return {
-                ...state,
-                loading: true,
-            }
-        case REMOVE_CHILD_CATEGORY_SUCCESS:
+        case UNLINK_CATEGORIES_SUCCESS:
             return {
                 ...state,
                 loading: false,

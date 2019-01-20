@@ -37,9 +37,7 @@ class CategoriesPage extends Component {
 	}
 
 	createCategory = () => {
-		this.props.createCategory({
-			title: "Untitled"
-		}, (data) => {
+		this.props.createCategory((data) => {
 			this.createCategoryToast()
 		})
 	}

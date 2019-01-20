@@ -37,6 +37,8 @@ import {
 	deleteCategory,
 	clearCurrentCategory,
     updateCategory,
+    createCategory,
+    linkCategories,
     updateCategoriesTree,
     getCategory,
     checkExpandedCategory,
@@ -144,7 +146,11 @@ class Sidebar extends Component {
 				<MenuItem
 					icon="log-out"
 					key="2"
-					onClick={() => console.log("add child")}
+					onClick={() => {
+                        this.props.createCategory({}, (data) => {
+                            console.log(data)
+                        })
+                    }}
 					text="Add Child Category"
 				/>
 				<MenuDivider key="divider-2" />
@@ -203,7 +209,11 @@ class Sidebar extends Component {
                 <div className="right-label-container">
 					<span
 						className="bp3-icon-standard bp3-icon-plus create-child no-expand"
-						onClick={() => console.log("create child category")}
+						onClick={() => {
+                            this.props.createCategory((data) => {
+                                this.props.linkCategories(data._id, category._id)
+                            })
+                        }}
 					/>
 					<Popover
 						content={this.renderMenu(category)}
@@ -292,5 +302,7 @@ export default connect(mapStateToProps, {
     checkSelectedCategory,
     updateCategoriesTreeSelection,
     loadCategory,
-    deleteCategory
+    deleteCategory,
+    createCategory,
+    linkCategories
 })(withRouter(Sidebar));
